@@ -1,31 +1,35 @@
-name: Desplegar Servicios de Monitoreo
+name: Desplegar
 
 on:
   push:
     branches:
       - main
 
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Copy files via SSH
+      - name: Checkout del repositorio
         uses: actions/checkout@v4
+
+      - name: Copiar archivos al servidor
         uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           source: "."
-          target: app
-      - name: Conectar a EC2 y desplegar monitoreo
+          target: "app"
+
+      - name: Conectar a EC2 y desplegar app
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            cd app 
 
+            mkdir -p app
+            
+            cd app
             sudo /usr/local/bin/docker-compose up -d app
