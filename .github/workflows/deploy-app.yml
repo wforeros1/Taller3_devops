@@ -1,7 +1,9 @@
 name: Desplegar Aplicación en EC2
 
 on:
-  workflow_dispatch:
+    push:
+      branches:
+        - main
 
 jobs:
   deploy:
