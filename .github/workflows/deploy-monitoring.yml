@@ -31,6 +31,5 @@ jobs:
           script: |
             cd app 
 
-            sudo /usr/local/bin/docker-compose down
-
-            sudo /usr/local/bin/docker-compose up -d 
+            sudo /usr/local/bin/docker-compose up -d grafana
+            sudo /usr/local/bin/docker-compose up -d prometheus 
