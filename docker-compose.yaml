@@ -2,8 +2,7 @@ version: '3.8'
 
 services:
   app:
-    build: .
-    container_name: python-app
+    image: ghcr.io/wforeros1/taller3_devops/python-app:latest
     ports:
       - "8000:8000"
     networks:
@@ -16,7 +15,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       - monitoring-net
     restart: unless-stopped

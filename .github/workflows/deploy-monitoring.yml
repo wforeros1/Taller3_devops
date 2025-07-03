@@ -18,6 +18,11 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            cd Taller3_devops
+            cd Taller3_devops 
             git pull
-            sudo /usr/local/bin/docker-compose -f monitoring/docker-compose.monitoring.yml up -d prometheus grafana
+            
+            echo ${{ secrets.GH_PAT }} | sudo docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+            sudo /usr/local/bin/docker-compose pull
+
+            sudo /usr/local/bin/docker-compose up -d prometheus grafana
