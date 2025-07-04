@@ -26,6 +26,6 @@ jobs:
       - name: Construir y publicar la imagen Docker
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./app
           push: true
           tags: ghcr.io/${{ github.repository }}/python-app:latest
