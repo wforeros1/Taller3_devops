@@ -28,6 +28,5 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-
             cd /home/ec2-user/app 
             docker-compose up -d app
