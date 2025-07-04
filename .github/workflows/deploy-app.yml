@@ -1,4 +1,4 @@
-name: Desplegar
+name: Desplegar 
 
 on: 
   push:
@@ -29,7 +29,5 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
 
-            mkdir -p app
-            
-            cd app
-            sudo /usr/local/bin/docker-compose up -d app
+            cd /home/ec2-user/app 
+            docker-compose up -d app
