@@ -19,7 +19,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
-          source: "docker-compose.yaml,monitoring"
+          source: "."
           target: "app"
 
       - name: Conectar a EC2 y desplegar monitoreo
