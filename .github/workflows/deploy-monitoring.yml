@@ -10,18 +10,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout del repositorio
-        uses: actions/checkout@v4
-      
-      - name: Copiar archivos de monitoreo al servidor
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.EC2_PRIVATE_KEY }}
-          source: "."
-          target: "app"
-
       - name: Conectar a EC2 y desplegar monitoreo
         uses: appleboy/ssh-action@master
         with:
@@ -29,7 +17,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            cd app 
+            cd "/home/ec2-user/app" 
 
             sudo /usr/local/bin/docker-compose up -d prometheus 
             sudo /usr/local/bin/docker-compose up -d grafana
